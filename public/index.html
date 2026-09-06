@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ConnectHub — Sign in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="auth-body">
+
+  <div class="auth-hero">
+    <div class="brand-word">ConnectHub<span class="dot">.</span></div>
+    <h1 class="hero-headline">One room for the call, the screen, and the board.</h1>
+    <p class="hero-sub">Video, screen sharing, a shared whiteboard, and file transfer — all in the same room, synced in real time, no downloads required.</p>
+    <div class="waveform" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <h1 id="panel-heading">Sign in to your account</h1>
+
+    <div class="tabs">
+      <button id="tab-login" class="tab active">Log in</button>
+      <button id="tab-register" class="tab">Register</button>
+    </div>
+
+    <form id="login-form" class="auth-form">
+      <input type="text" id="login-username" placeholder="Username" autocomplete="username" required />
+      <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required />
+      <button type="submit">Log in</button>
+    </form>
+
+    <form id="register-form" class="auth-form hidden">
+      <input type="text" id="register-username" placeholder="Username (3–20 characters)" required />
+      <input type="password" id="register-password" placeholder="Password (min. 6 characters)" required />
+      <button type="submit">Create account</button>
+    </form>
+
+    <p id="auth-error" class="status-msg hidden"></p>
+  </div>
+
+  <script src="/js/auth.js"></script>
+</body>
+</html>

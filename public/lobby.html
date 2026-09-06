@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ConnectHub — Lobby</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="lobby-body">
+
+  <header class="lobby-header">
+    <div class="brand-word">ConnectHub<span class="dot">.</span></div>
+    <div class="lobby-user">
+      <span class="avatar-dot" id="avatar-initial"></span>
+      <span id="username-display"></span>
+      <button id="logout-btn" class="secondary" type="button">Log out</button>
+    </div>
+  </header>
+
+  <main class="lobby-main">
+    <h1 class="lobby-heading">Where to?</h1>
+    <p class="lobby-sub">Start broadcasting, or tune in to a room that's already live.</p>
+
+    <div class="console">
+      <div class="console-pane console-create">
+        <div class="console-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 12v9"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><path d="M5.5 12.5a9 9 0 0 1 13 0"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <h2>Create a room</h2>
+        <p>Start a new session and share the code with others.</p>
+        <button id="create-room-btn" type="button">Create room</button>
+      </div>
+
+      <div class="console-divider" aria-hidden="true">
+        <span class="line"></span>
+        <span class="divider-word">or</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="console-pane console-join">
+        <div class="console-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6"/><path d="M7 8a4 4 0 0 0 0 8"/><path d="M17 8a4 4 0 0 1 0 8"/></svg>
+        </div>
+        <h2>Join a room</h2>
+        <p>Enter the code someone shared with you.</p>
+        <div class="console-join-row">
+          <input type="text" id="join-room-input" placeholder="Room code" autocomplete="off" />
+          <button id="join-room-btn" class="secondary" type="button">Join</button>
+        </div>
+      </div>
+    </div>
+
+    <p id="lobby-error" class="status-msg hidden"></p>
+  </main>
+
+  <script src="/js/lobby.js"></script>
+</body>
+</html>

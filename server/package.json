@@ -1,0 +1,29 @@
+{
+  "name": "realtime-collab-server",
+  "version": "1.0.0",
+  "description": "Backend for the Real-Time Communication & Collaboration App (video calls, screen share, whiteboard, file share)",
+  "main": "server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "certs": "node scripts/generate-certs.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.1",
+    "socket.io": "^4.7.5",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "selfsigned": "^2.4.1"
+  }
+}
