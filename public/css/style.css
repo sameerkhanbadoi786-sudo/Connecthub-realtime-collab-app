@@ -907,3 +907,97 @@ button.danger:hover { background: #ff6c85; filter: none; }
 .hidden {
   display: none !important;
 }
+/* ==========================================================
+   Mobile room controls — fixed bottom dock
+   ========================================================== */
+
+@media (max-width: 640px) {
+
+  .room-body {
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .room-main {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .video-panel {
+    min-width: 0;
+    min-height: 0;
+    padding: 14px;
+    padding-bottom: 90px;
+    overflow: hidden;
+  }
+
+  .video-grid {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    overflow-y: auto;
+    padding-bottom: 10px;
+  }
+
+  /* Always keep call controls visible on mobile */
+  .dock {
+    position: fixed;
+    left: 50%;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+
+    width: max-content;
+    max-width: calc(100vw - 20px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+    padding: 7px;
+
+    z-index: 9999;
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dock-btn {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    flex-shrink: 0;
+  }
+
+  .dock-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .dock-divider {
+    height: 22px;
+    margin: 0 2px;
+    flex-shrink: 0;
+  }
+
+  .side-panel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    z-index: 2000;
+  }
+
+  .room-header {
+    padding: 12px 14px;
+  }
+
+  .room-info {
+    gap: 7px;
+  }
+
+  .room-user {
+    gap: 6px;
+  }
+}
