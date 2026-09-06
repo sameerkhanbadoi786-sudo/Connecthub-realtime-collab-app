@@ -5,8 +5,11 @@
 
 // ---------- Auth guard ----------
 
+
 const token = localStorage.getItem('token');
 const username = localStorage.getItem('username');
+const API_URL =
+  'https://connecthub-realtime-collab-app-production.up.railway.app';
 
 if (!token || !username) {
   window.location.href = '/index.html';
@@ -35,7 +38,7 @@ document.getElementById('copy-room-btn').addEventListener('click', () => {
 
 // ---------- Socket.io connection ----------
 
-const socket = io({
+const socket = io(API_URL, {
   auth: { token },
 });
 
@@ -59,7 +62,7 @@ let ICE_SERVERS = {
 
 async function loadIceConfig() {
   try {
-    const res = await fetch('/api/ice-config', {
+    const res = await fetch(`${API_URL}/api/ice-config`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -1206,10 +1209,7 @@ fileInput.addEventListener(
     );
 
     try {
-      const res =
-        await fetch(
-          '/api/upload',
-          {
+      const res = await fetch(`${API_URL}/api/upload`, {
             method: 'POST',
             headers: {
               Authorization:
