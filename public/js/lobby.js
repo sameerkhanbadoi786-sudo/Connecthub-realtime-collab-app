@@ -17,6 +17,30 @@ document.getElementById('logout-btn').addEventListener('click', () => {
   window.location.href = '/index.html';
 });
 
+// ---------- Mobile hamburger menu ----------
+// On narrow screens the header collapses to just the brand + this button;
+// tapping it reveals the account info and log out control as a dropdown.
+const menuBtn = document.getElementById('lobby-menu-btn');
+const userMenu = document.getElementById('lobby-user-menu');
+
+function closeUserMenu() {
+  userMenu.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+}
+
+menuBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isOpen = userMenu.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(isOpen));
+});
+
+document.addEventListener('click', (e) => {
+  if (!userMenu.contains(e.target) && e.target !== menuBtn) closeUserMenu();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeUserMenu();
+});
+
 // ---------- Create room ----------
 document.getElementById('create-room-btn').addEventListener('click', () => {
   const roomId = Math.random().toString(36).substring(2, 8);

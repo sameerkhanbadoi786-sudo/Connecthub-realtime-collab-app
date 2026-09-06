@@ -361,6 +361,7 @@ button.danger:hover { background: #ff6c85; filter: none; }
 }
 
 .lobby-header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -371,6 +372,25 @@ button.danger:hover { background: #ff6c85; filter: none; }
 
 .lobby-user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); }
 .lobby-user button { padding: 8px 14px; font-size: 12.5px; }
+.lobby-header .brand-word,
+.room-header .brand-word {
+  margin-bottom: 0;
+}
+
+.hamburger-btn {
+  display: none;
+  width: 38px; height: 38px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: none;
+}
+.hamburger-btn svg { width: 18px; height: 18px; }
+.hamburger-btn:hover { border-color: var(--text-faint); }
 
 .lobby-main {
   flex: 1;
@@ -497,6 +517,29 @@ button.danger:hover { background: #ff6c85; filter: none; }
   .console-divider { flex-direction: row; padding: 0 28px; }
   .console-divider .line { width: auto; height: 1px; flex: 1; }
   .console-pane { padding: 32px 28px; }
+
+  /* Header collapses to just the brand + hamburger; account info and log
+     out move into a dropdown revealed by the hamburger button. */
+  .hamburger-btn { display: flex; }
+
+  .lobby-user {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    z-index: 500;
+    min-width: 190px;
+  }
+  .lobby-user.open { display: flex; }
+  .lobby-user .avatar-dot { align-self: flex-start; }
 }
 
 /* ==========================================================================
@@ -729,6 +772,11 @@ button.danger:hover { background: #ff6c85; filter: none; }
 .dock-btn.is-active { background: var(--accent-dim); color: #c8bcff; }
 .dock-btn.is-off { background: var(--danger-dim); color: #ffb0bd; }
 .dock-btn.panel-active { background: var(--gradient); color: #0a0b10; }
+.dock-btn:disabled, .dock-btn.is-unsupported {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.dock-btn:disabled:hover, .dock-btn.is-unsupported:hover { background: var(--surface); }
 
 .dock-divider { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
 
@@ -753,7 +801,21 @@ button.danger:hover { background: #ff6c85; filter: none; }
 }
 .side-panel.hidden { display: none; }
 
-.side-tabs { display: flex; border-bottom: 1px solid var(--border-soft); padding: 0 8px; }
+.side-tabs { display: flex; align-items: center; border-bottom: 1px solid var(--border-soft); padding: 0 4px 0 8px; }
+.side-panel-close {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  background: none;
+  border: none;
+  color: var(--text-faint);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+  box-shadow: none;
+  margin-left: 4px;
+}
+.side-panel-close svg { width: 15px; height: 15px; }
+.side-panel-close:hover { background: var(--surface); color: var(--text); }
 .side-tab {
   flex: 1;
   background: none;
@@ -986,7 +1048,17 @@ button.danger:hover { background: #ff6c85; filter: none; }
     inset: 0;
     width: 100%;
     height: 100dvh;
-    z-index: 2000;
+    z-index: 10000;
+  }
+
+  /* While a side panel (chat/whiteboard/files) covers the screen, the
+     floating call dock has nothing to usefully overlap - previously it sat
+     at a higher z-index than the panel and stayed visibly stuck on top of
+     it. Hiding it here is what actually makes chat/whiteboard feel like a
+     real full-screen view instead of a panel with stray buttons floating
+     over it. */
+  body.panel-open .dock {
+    display: none;
   }
 
   .room-header {

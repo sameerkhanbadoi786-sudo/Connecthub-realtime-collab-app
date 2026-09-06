@@ -909,9 +909,27 @@ const screenBtn =
     'toggle-screen'
   );
 
+// Most mobile browsers (all of iOS Safari, most mobile Chrome/Firefox
+// builds) don't implement getDisplayMedia at all - that's a platform
+// limitation, not a bug here. Detect it up front and disable the button
+// with an honest explanation instead of leaving a control that silently
+// does nothing when tapped.
+const SCREEN_SHARE_SUPPORTED = !!(
+  navigator.mediaDevices &&
+  typeof navigator.mediaDevices.getDisplayMedia === 'function'
+);
+
+if (!SCREEN_SHARE_SUPPORTED) {
+  screenBtn.disabled = true;
+  screenBtn.classList.add('is-unsupported');
+  screenBtn.title = "Screen sharing isn't supported on this browser";
+  screenBtn.setAttribute('aria-label', screenBtn.title);
+}
+
 screenBtn.addEventListener(
   'click',
   async () => {
+    if (!SCREEN_SHARE_SUPPORTED) return;
     if (!screenStream) {
       try {
         screenStream =
@@ -920,7 +938,14 @@ screenBtn.addEventListener(
               video: true,
             }
           );
-      } catch {
+      } catch (err) {
+        // AbortError/NotAllowedError just mean the person cancelled the
+        // share-picker dialog - not worth interrupting them for. Anything
+        // else is a real failure and previously failed completely silently,
+        // making it impossible to tell "cancelled" apart from "broken".
+        if (err && err.name !== 'AbortError' && err.name !== 'NotAllowedError') {
+          alert('Could not start screen sharing: ' + err.message);
+        }
         return;
       }
 
@@ -1054,129 +1079,72 @@ function stopScreenShare() {
 
 // ---------- Side panel ----------
 
-const sidePanel =
-  document.getElementById(
-    'side-panel'
-  );
+const sidePanel = document.getElementById('side-panel');
 
 const sideTabs = {
-  whiteboard:
-    document.getElementById(
-      'side-tab-whiteboard'
-    ),
-
-  files:
-    document.getElementById(
-      'side-tab-files'
-    ),
-
-  chat:
-    document.getElementById(
-      'side-tab-chat'
-    ),
+  whiteboard: document.getElementById('side-tab-whiteboard'),
+  files: document.getElementById('side-tab-files'),
+  chat: document.getElementById('side-tab-chat'),
 };
 
 const sidePanels = {
-  whiteboard:
-    document.getElementById(
-      'whiteboard-panel'
-    ),
-
-  files:
-    document.getElementById(
-      'files-panel'
-    ),
-
-  chat:
-    document.getElementById(
-      'chat-panel'
-    ),
+  whiteboard: document.getElementById('whiteboard-panel'),
+  files: document.getElementById('files-panel'),
+  chat: document.getElementById('chat-panel'),
 };
 
 const dockPanelButtons = {
-  whiteboard:
-    document.getElementById(
-      'toggle-whiteboard'
-    ),
-
-  files:
-    document.getElementById(
-      'toggle-files'
-    ),
+  whiteboard: document.getElementById('toggle-whiteboard'),
+  files: document.getElementById('toggle-files'),
 };
 
-function showSidePanel(
-  which
-) {
-  sidePanel.classList.remove(
-    'hidden'
-  );
+// Tracks which tab is open (or null if the panel is fully closed) so a
+// second click on the same dock button can close it instead of doing
+// nothing - previously there was no way to close the panel at all once open.
+let currentSidePanel = null;
 
-  Object.keys(sideTabs).forEach(
-    (key) => {
-      sideTabs[key].classList.toggle(
-        'active',
-        key === which
-      );
+function showSidePanel(which) {
+  currentSidePanel = which;
+  sidePanel.classList.remove('hidden');
+  document.body.classList.add('panel-open'); // lets mobile CSS hide the floating call dock while a panel covers the screen
 
-      sidePanels[key].classList.toggle(
-        'hidden',
-        key !== which
-      );
-    }
-  );
+  Object.keys(sideTabs).forEach((key) => {
+    sideTabs[key].classList.toggle('active', key === which);
+    sidePanels[key].classList.toggle('hidden', key !== which);
+  });
 
-  Object.keys(
-    dockPanelButtons
-  ).forEach((key) => {
-    dockPanelButtons[
-      key
-    ].classList.toggle(
-      'panel-active',
-      key === which
-    );
+  Object.keys(dockPanelButtons).forEach((key) => {
+    dockPanelButtons[key].classList.toggle('panel-active', key === which);
   });
 }
 
-document
-  .getElementById(
-    'toggle-whiteboard'
-  )
-  .addEventListener(
-    'click',
-    () =>
-      showSidePanel(
-        'whiteboard'
-      )
-  );
+function hideSidePanel() {
+  currentSidePanel = null;
+  sidePanel.classList.add('hidden');
+  document.body.classList.remove('panel-open');
+  Object.keys(dockPanelButtons).forEach((key) => dockPanelButtons[key].classList.remove('panel-active'));
+}
 
-document
-  .getElementById(
-    'toggle-files'
-  )
-  .addEventListener(
-    'click',
-    () =>
-      showSidePanel('files')
-  );
+// Dock buttons (whiteboard/files) toggle: click to open, click again to close.
+function toggleSidePanel(which) {
+  const isOpen = !sidePanel.classList.contains('hidden');
+  if (isOpen && currentSidePanel === which) {
+    hideSidePanel();
+  } else {
+    showSidePanel(which);
+  }
+}
 
-sideTabs.whiteboard.addEventListener(
-  'click',
-  () =>
-    showSidePanel('whiteboard')
-);
+document.getElementById('toggle-whiteboard').addEventListener('click', () => toggleSidePanel('whiteboard'));
+document.getElementById('toggle-files').addEventListener('click', () => toggleSidePanel('files'));
 
-sideTabs.files.addEventListener(
-  'click',
-  () =>
-    showSidePanel('files')
-);
+// Tabs inside an already-open panel just switch view, they don't close it.
+sideTabs.whiteboard.addEventListener('click', () => showSidePanel('whiteboard'));
+sideTabs.files.addEventListener('click', () => showSidePanel('files'));
+sideTabs.chat.addEventListener('click', () => showSidePanel('chat'));
 
-sideTabs.chat.addEventListener(
-  'click',
-  () =>
-    showSidePanel('chat')
-);
+const closeSidePanelBtn = document.getElementById('close-side-panel');
+if (closeSidePanelBtn) closeSidePanelBtn.addEventListener('click', hideSidePanel);
 
 // ---------- File sharing ----------
 
