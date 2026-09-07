@@ -244,6 +244,7 @@ io.use((socket, next) => {
 
 // roomId -> Set of socket ids
 const rooms = new Map();
+const roomAuthors = new Map(); // roomId -> socketId of whoever may kick others
 
 // roomId -> socket id of the room creator
 //
