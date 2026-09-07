@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#0a2416"/>
+      <stop offset="100%" stop-color="#020705"/>
+    </radialGradient>
+    <linearGradient id="bar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#0f7a3d"/>
+      <stop offset="100%" stop-color="#4dff9e"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-strong" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="3.5"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <g filter="url(#glow)">
+    <rect x="9"  y="40" width="6" height="14" rx="1.5" fill="url(#bar)"/>
+    <rect x="19" y="34" width="6" height="20" rx="1.5" fill="url(#bar)"/>
+    <rect x="29" y="26" width="6" height="28" rx="1.5" fill="url(#bar)"/>
+    <rect x="39" y="18" width="6" height="36" rx="1.5" fill="url(#bar)"/>
+    <rect x="49" y="9"  width="6" height="45" rx="1.5" fill="url(#bar)"/>
+  </g>
+  <polyline points="12,40 22,34 32,26 42,18 52,9"
+            fill="none" stroke="#7dffb3" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"
+            filter="url(#glow)"/>
+  <g fill="#c9ffe0">
+    <circle cx="12" cy="40" r="3" filter="url(#glow-strong)"/>
+    <circle cx="22" cy="34" r="3" filter="url(#glow-strong)"/>
+    <circle cx="32" cy="26" r="3" filter="url(#glow-strong)"/>
+    <circle cx="42" cy="18" r="3" filter="url(#glow-strong)"/>
+    <circle cx="52" cy="9"  r="3.4" filter="url(#glow-strong)"/>
+  </g>
+  <g fill="#ffffff">
+    <circle cx="12" cy="40" r="1.4"/>
+    <circle cx="22" cy="34" r="1.4"/>
+    <circle cx="32" cy="26" r="1.4"/>
+    <circle cx="42" cy="18" r="1.4"/>
+    <circle cx="52" cy="9"  r="1.6"/>
+  </g>
+</svg>
