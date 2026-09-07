@@ -17,9 +17,15 @@
       <span class="room-code" id="room-id-display"></span>
       <button id="copy-room-btn" type="button">Copy link</button>
     </div>
-    <div class="room-user">
+
+    <button id="room-menu-btn" class="hamburger-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="room-user-menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+
+    <div class="room-user" id="room-user-menu">
       <span class="avatar-dot" id="avatar-initial"></span>
       <span id="username-display"></span>
+      <button id="room-menu-leave-btn" class="danger" type="button">Leave room</button>
     </div>
   </header>
 

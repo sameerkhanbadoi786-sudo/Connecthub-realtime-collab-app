@@ -1763,39 +1763,67 @@ function escapeHtml(str) {
 
 // ---------- Leave ----------
 
+function leaveRoom() {
+  socket.emit(
+    'leave-room'
+  );
+
+  peerConnections.forEach(
+    (pc) => pc.close()
+  );
+
+  if (localStream) {
+    localStream
+      .getTracks()
+      .forEach((t) =>
+        t.stop()
+      );
+  }
+
+  if (screenStream) {
+    screenStream
+      .getTracks()
+      .forEach((t) =>
+        t.stop()
+      );
+  }
+
+  window.location.href =
+    '/lobby.html';
+}
+
 document
   .getElementById('leave-btn')
-  .addEventListener(
-    'click',
-    () => {
-      socket.emit(
-        'leave-room'
-      );
+  .addEventListener('click', leaveRoom);
 
-      peerConnections.forEach(
-        (pc) => pc.close()
-      );
+// ---------- Mobile hamburger menu ----------
+// On narrow screens the header collapses to the room code + this button;
+// tapping it reveals the account info and a Leave Room button as a dropdown,
+// same pattern as the lobby header.
+const roomMenuBtn = document.getElementById('room-menu-btn');
+const roomUserMenu = document.getElementById('room-user-menu');
 
-      if (localStream) {
-        localStream
-          .getTracks()
-          .forEach((t) =>
-            t.stop()
-          );
-      }
+function closeRoomUserMenu() {
+  roomUserMenu.classList.remove('open');
+  roomMenuBtn.setAttribute('aria-expanded', 'false');
+}
 
-      if (screenStream) {
-        screenStream
-          .getTracks()
-          .forEach((t) =>
-            t.stop()
-          );
-      }
+roomMenuBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isOpen = roomUserMenu.classList.toggle('open');
+  roomMenuBtn.setAttribute('aria-expanded', String(isOpen));
+});
 
-      window.location.href =
-        '/lobby.html';
-    }
-  );
+document.addEventListener('click', (e) => {
+  if (!roomUserMenu.contains(e.target) && e.target !== roomMenuBtn) closeRoomUserMenu();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeRoomUserMenu();
+});
+
+document
+  .getElementById('room-menu-leave-btn')
+  .addEventListener('click', leaveRoom);
 
 // ---------- Start ----------
 

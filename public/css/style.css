@@ -554,6 +554,7 @@ button.danger:hover { background: #ff6c85; filter: none; }
 }
 
 .room-header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -974,14 +975,38 @@ button.danger:hover { background: #ff6c85; filter: none; }
 
 @media (max-width: 640px) {
 
-  /* Mobile browsers (Chrome/Firefox for Android, all of iOS Safari) don't
-     implement getDisplayMedia at all - it's a platform limitation, not a
-     bug here. A disabled/greyed icon next to working ones reads as
-     "broken", so on mobile we just remove it from the dock entirely
-     rather than show a control that can never work. */
-  #toggle-screen.is-unsupported {
+  /* Mobile browsers claim to support getDisplayMedia (the function exists)
+     but Chrome/Firefox for Android always reject with NotAllowedError when
+     it's actually called, and iOS Safari doesn't implement it at all - so
+     feature-detection alone isn't reliable enough to trust. Screen sharing
+     essentially never works from a phone browser in practice, so we hide
+     the control outright below phone width rather than show something
+     that looks broken when tapped. */
+  #toggle-screen {
     display: none;
   }
+
+  /* Room header collapses to just the room code + hamburger; account info
+     and Leave room move into a dropdown revealed by the hamburger button -
+     same pattern as the lobby header. */
+  .room-user {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    z-index: 500;
+    min-width: 190px;
+  }
+  .room-user.open { display: flex; }
+  .room-user .avatar-dot { align-self: flex-start; }
 
   .room-body {
     height: 100dvh;
