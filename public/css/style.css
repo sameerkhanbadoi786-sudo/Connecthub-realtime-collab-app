@@ -24,13 +24,13 @@
   --text-muted: #8d93a8;
   --text-faint: #52586c;
 
-  --grad-1: #8a3ffc;
-  --grad-2: #ff2f92;
-  --mesh-3: #ff8a3d;
+  --grad-1: #4a55b0;
+  --grad-2: #3d4590;
+  --mesh-3: #2e3568;
   --gradient: linear-gradient(135deg, var(--grad-1) 0%, var(--grad-2) 100%);
-  --accent: #a869ff;
-  --accent-dim: rgba(138, 63, 252, 0.16);
-  --accent-ring: rgba(138, 63, 252, 0.45);
+  --accent: #6b74c4;
+  --accent-dim: rgba(74, 85, 176, 0.14);
+  --accent-ring: rgba(74, 85, 176, 0.35);
 
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
 
@@ -98,18 +98,17 @@ input:focus-visible,
   padding: 64px;
   background:
     var(--noise),
-    radial-gradient(ellipse 900px 700px at 30% 60%, rgba(255, 138, 61, 0.55), transparent 60%),
-    radial-gradient(ellipse 800px 800px at 55% 75%, rgba(255, 47, 146, 0.55), transparent 60%),
-    radial-gradient(ellipse 900px 900px at 40% 20%, rgba(138, 63, 252, 0.65), transparent 60%),
+    radial-gradient(ellipse 900px 700px at 30% 60%, rgba(46, 53, 104, 0.35), transparent 60%),
+    radial-gradient(ellipse 800px 800px at 55% 75%, rgba(61, 69, 144, 0.3), transparent 60%),
+    radial-gradient(ellipse 900px 900px at 40% 20%, rgba(74, 85, 176, 0.4), transparent 60%),
     #05060a;
   background-blend-mode: overlay, normal, normal, normal, normal;
   border-right: 1px solid var(--border-soft);
   overflow: hidden;
 }
 
-/* The one orchestrated motion moment on this screen: a saturated mesh
-   blob that slowly breathes and drifts behind the copy, plus a heavy
-   blur veil so the type stays legible over it. */
+/* The one orchestrated motion moment on this screen: a quiet, slow-drifting
+   tone shift behind the copy - subdued, not a bright glowing blob. */
 .auth-hero::before,
 .auth-hero::after {
   content: '';
@@ -117,14 +116,14 @@ input:focus-visible,
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: screen;
+  mix-blend-mode: normal;
 }
 .auth-hero::before {
   width: 720px;
   height: 720px;
   background: radial-gradient(circle, var(--grad-1), transparent 65%);
-  filter: blur(70px);
-  opacity: 0.85;
+  filter: blur(90px);
+  opacity: 0.3;
   top: -180px;
   left: -120px;
   animation: drift-a 24s ease-in-out infinite;
@@ -134,7 +133,7 @@ input:focus-visible,
   height: 640px;
   background: radial-gradient(circle, var(--mesh-3), transparent 65%);
   filter: blur(80px);
-  opacity: 0.7;
+  opacity: 0.25;
   bottom: -220px;
   right: -160px;
   animation: drift-b 28s ease-in-out infinite;
@@ -220,8 +219,8 @@ input:focus-visible,
   padding: 64px;
   background:
     var(--noise),
-    radial-gradient(ellipse 500px 420px at 100% 0%, rgba(255, 47, 146, 0.1), transparent 60%),
-    radial-gradient(ellipse 460px 400px at 0% 100%, rgba(138, 63, 252, 0.09), transparent 60%),
+    radial-gradient(ellipse 500px 420px at 100% 0%, rgba(61, 69, 144, 0.06), transparent 60%),
+    radial-gradient(ellipse 460px 400px at 0% 100%, rgba(74, 85, 176, 0.05), transparent 60%),
     var(--bg);
   background-blend-mode: overlay, normal, normal, normal;
 }
@@ -296,9 +295,9 @@ button {
   background: var(--gradient);
   color: #0a0b10;
   transition: filter 0.15s, transform 0.1s, box-shadow 0.15s;
-  box-shadow: 0 6px 20px rgba(138, 63, 252, 0.35);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
 }
-button:hover { filter: brightness(1.08); box-shadow: 0 8px 26px rgba(255, 47, 146, 0.4); }
+button:hover { filter: brightness(1.08); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); }
 button:active { transform: translateY(1px); }
 
 button.secondary {
@@ -321,7 +320,7 @@ button.danger:hover { background: #ff6c85; filter: none; }
 }
 .status-msg.hidden { display: none; }
 .status-msg.error { background: var(--danger-dim); color: #ffb0bd; }
-.status-msg.info { background: var(--accent-dim); color: #cabfff; }
+.status-msg.info { background: var(--accent-dim); color: #b4bce8; }
 
 .join-room-block {
   margin-top: 28px;
@@ -353,8 +352,8 @@ button.danger:hover { background: #ff6c85; filter: none; }
   flex-direction: column;
   background:
     var(--noise),
-    radial-gradient(ellipse 900px 700px at 15% -10%, rgba(138, 63, 252, 0.28), transparent 55%),
-    radial-gradient(ellipse 800px 700px at 88% 105%, rgba(255, 47, 146, 0.22), transparent 55%),
+    radial-gradient(ellipse 900px 700px at 15% -10%, rgba(74, 85, 176, 0.12), transparent 55%),
+    radial-gradient(ellipse 800px 700px at 88% 105%, rgba(61, 69, 144, 0.08), transparent 55%),
     radial-gradient(ellipse 700px 600px at 60% 40%, rgba(255, 138, 61, 0.1), transparent 55%),
     var(--bg);
   background-blend-mode: overlay, normal, normal, normal, normal;
@@ -594,8 +593,8 @@ button.danger:hover { background: #ff6c85; filter: none; }
   overflow: hidden;
   position: relative;
   background:
-    radial-gradient(circle at 20% 0%, rgba(138, 63, 252, 0.09), transparent 40%),
-    radial-gradient(circle at 85% 100%, rgba(255, 47, 146, 0.07), transparent 40%);
+    radial-gradient(circle at 20% 0%, rgba(74, 85, 176, 0.06), transparent 40%),
+    radial-gradient(circle at 85% 100%, rgba(61, 69, 144, 0.04), transparent 40%);
 }
 
 .video-panel {
@@ -628,7 +627,7 @@ button.danger:hover { background: #ff6c85; filter: none; }
 }
 .video-tile.speaking {
   border-color: transparent;
-  box-shadow: 0 0 0 2px var(--grad-1), 0 0 30px rgba(255, 47, 146, 0.5);
+  box-shadow: 0 0 0 1px var(--grad-1), 0 0 12px rgba(0, 0, 0, 0.4);
 }
 .video-tile video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .video-tile .label {
@@ -769,7 +768,7 @@ button.danger:hover { background: #ff6c85; filter: none; }
 .dock-btn:hover { background: rgba(255, 255, 255, 0.09); transform: translateY(-1px); }
 .dock-btn svg { width: 19px; height: 19px; }
 
-.dock-btn.is-active { background: var(--accent-dim); color: #c8bcff; }
+.dock-btn.is-active { background: var(--accent-dim); color: #b4bce8; }
 .dock-btn.is-off { background: var(--danger-dim); color: #ffb0bd; }
 .dock-btn.panel-active { background: var(--gradient); color: #0a0b10; }
 .dock-btn:disabled, .dock-btn.is-unsupported {
@@ -956,7 +955,7 @@ button.danger:hover { background: #ff6c85; filter: none; }
   font-size: 13px;
   cursor: pointer;
 }
-.mention-item:hover, .mention-item.active { background: var(--accent-dim); color: #c8bcff; }
+.mention-item:hover, .mention-item.active { background: var(--accent-dim); color: #b4bce8; }
 .mention-item .avatar-dot {
   width: 18px; height: 18px;
   border-radius: 50%;
@@ -974,6 +973,15 @@ button.danger:hover { background: #ff6c85; filter: none; }
    ========================================================== */
 
 @media (max-width: 640px) {
+
+  /* Mobile browsers (Chrome/Firefox for Android, all of iOS Safari) don't
+     implement getDisplayMedia at all - it's a platform limitation, not a
+     bug here. A disabled/greyed icon next to working ones reads as
+     "broken", so on mobile we just remove it from the dock entirely
+     rather than show a control that can never work. */
+  #toggle-screen.is-unsupported {
+    display: none;
+  }
 
   .room-body {
     height: 100dvh;
@@ -1071,5 +1079,24 @@ button.danger:hover { background: #ff6c85; filter: none; }
 
   .room-user {
     gap: 6px;
+  }
+}
+
+/* ==========================================================================
+   Mobile performance mode
+   backdrop-filter blur and the animated blurred hero blobs are expensive
+   to composite on phone GPUs. Below phone width we drop blur (glass panels
+   fall back to their solid semi-opaque background, which already reads
+   fine) and freeze the hero blob animation - same look, far cheaper to paint.
+   ========================================================================== */
+@media (max-width: 780px) {
+  :root {
+    --glass-blur: none;
+    --noise: none;
+  }
+  .auth-hero::before,
+  .auth-hero::after {
+    animation: none;
+    filter: blur(46px);
   }
 }
