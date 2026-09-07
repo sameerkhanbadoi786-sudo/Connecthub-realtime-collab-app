@@ -1,4 +1,4 @@
-[# ConnectHub — Real-Time Communication & Collaboration App
+# ConnectHub — Real-Time Communication & Collaboration App
 
 A video conferencing + collaboration web app: multi-user video calls, screen
 sharing, a shared whiteboard, file sharing, and JWT-based authentication.
