@@ -1,4 +1,4 @@
-# ConnectHub — Real-Time Communication & Collaboration App
+[# ConnectHub — Real-Time Communication & Collaboration App
 
 A video conferencing + collaboration web app: multi-user video calls, screen
 sharing, a shared whiteboard, file sharing, and JWT-based authentication.
@@ -204,3 +204,4 @@ PORT=3000
 - Move from single-file SQLite to Postgres/MySQL if this ever needs to run
   as more than one server instance (SQLite is one file, shared by exactly
   one process).
+](https://github.com/sameerkhanbadoi786-sudo/Connecthub-realtime-collab-app.git)
