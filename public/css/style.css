@@ -9,28 +9,28 @@
    ========================================================================== */
 
 :root {
-  --bg: #090b10;
-  --bg-elevated: #10131b;
-  --surface: #161a24;
-  --border: rgba(255, 255, 255, 0.09);
-  --border-soft: rgba(255, 255, 255, 0.06);
+  --bg: #111419;
+  --bg-elevated: #191d22;
+  --surface: #20252b;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-soft: rgba(255, 255, 255, 0.07);
 
   --glass-bg: rgba(255, 255, 255, 0.045);
-  --glass-bg-strong: rgba(20, 23, 32, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg-strong: rgba(18, 22, 27, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.11);
   --glass-blur: blur(20px);
 
-  --text: #f2f3f8;
-  --text-muted: #8d93a8;
-  --text-faint: #52586c;
+  --text: #f5f7f8;
+  --text-muted: #a2a8ae;
+  --text-faint: #687078;
 
-  --grad-1: #4a55b0;
-  --grad-2: #3d4590;
-  --mesh-3: #2e3568;
-  --gradient: linear-gradient(135deg, var(--grad-1) 0%, var(--grad-2) 100%);
-  --accent: #6b74c4;
-  --accent-dim: rgba(74, 85, 176, 0.14);
-  --accent-ring: rgba(74, 85, 176, 0.35);
+  --grad-1: #10b8ff;
+  --grad-2: #087fe8;
+  --mesh-3: #075fbd;
+  --gradient: linear-gradient(135deg, #14c7ff 0%, #087fe8 100%);
+  --accent: #10b8ff;
+  --accent-dim: rgba(16, 184, 255, 0.12);
+  --accent-ring: rgba(16, 184, 255, 0.28);
 
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
 
@@ -98,9 +98,9 @@ input:focus-visible,
   padding: 64px;
   background:
     var(--noise),
-    radial-gradient(ellipse 900px 700px at 30% 60%, rgba(46, 53, 104, 0.35), transparent 60%),
-    radial-gradient(ellipse 800px 800px at 55% 75%, rgba(61, 69, 144, 0.3), transparent 60%),
-    radial-gradient(ellipse 900px 900px at 40% 20%, rgba(74, 85, 176, 0.4), transparent 60%),
+    radial-gradient(ellipse 900px 700px at 30% 60%, rgba(7, 146, 194, 0.20), transparent 60%),
+    radial-gradient(ellipse 800px 800px at 55% 75%, rgba(8, 127, 232, 0.14), transparent 60%),
+    radial-gradient(ellipse 900px 900px at 40% 20%, rgba(16, 184, 255, 0.18), transparent 60%),
     #05060a;
   background-blend-mode: overlay, normal, normal, normal, normal;
   border-right: 1px solid var(--border-soft);
@@ -133,7 +133,7 @@ input:focus-visible,
   height: 640px;
   background: radial-gradient(circle, var(--mesh-3), transparent 65%);
   filter: blur(80px);
-  opacity: 0.25;
+  opacity: 0.22;
   bottom: -220px;
   right: -160px;
   animation: drift-b 28s ease-in-out infinite;
@@ -219,8 +219,8 @@ input:focus-visible,
   padding: 64px;
   background:
     var(--noise),
-    radial-gradient(ellipse 500px 420px at 100% 0%, rgba(61, 69, 144, 0.06), transparent 60%),
-    radial-gradient(ellipse 460px 400px at 0% 100%, rgba(74, 85, 176, 0.05), transparent 60%),
+    radial-gradient(ellipse 500px 420px at 100% 0%, rgba(16, 184, 255, 0.045), transparent 60%),
+    radial-gradient(ellipse 460px 400px at 0% 100%, rgba(16, 184, 255, 0.035), transparent 60%),
     var(--bg);
   background-blend-mode: overlay, normal, normal, normal;
 }
@@ -295,9 +295,9 @@ button {
   background: var(--gradient);
   color: #0a0b10;
   transition: filter 0.15s, transform 0.1s, box-shadow 0.15s;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 14px rgba(16, 184, 255, 0.16);
 }
-button:hover { filter: brightness(1.08); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); }
+button:hover { filter: brightness(1.08); box-shadow: 0 6px 18px rgba(16, 184, 255, 0.20); }
 button:active { transform: translateY(1px); }
 
 button.secondary {
@@ -352,9 +352,9 @@ button.danger:hover { background: #ff6c85; filter: none; }
   flex-direction: column;
   background:
     var(--noise),
-    radial-gradient(ellipse 900px 700px at 15% -10%, rgba(74, 85, 176, 0.12), transparent 55%),
-    radial-gradient(ellipse 800px 700px at 88% 105%, rgba(61, 69, 144, 0.08), transparent 55%),
-    radial-gradient(ellipse 700px 600px at 60% 40%, rgba(255, 138, 61, 0.1), transparent 55%),
+    radial-gradient(ellipse 900px 700px at 15% -10%, rgba(16, 184, 255, 0.08), transparent 55%),
+    radial-gradient(ellipse 800px 700px at 88% 105%, rgba(16, 184, 255, 0.055), transparent 55%),
+    radial-gradient(ellipse 700px 600px at 60% 40%, rgba(0, 199, 201, 0.06), transparent 55%),
     var(--bg);
   background-blend-mode: overlay, normal, normal, normal, normal;
 }
@@ -594,8 +594,8 @@ button.danger:hover { background: #ff6c85; filter: none; }
   overflow: hidden;
   position: relative;
   background:
-    radial-gradient(circle at 20% 0%, rgba(74, 85, 176, 0.06), transparent 40%),
-    radial-gradient(circle at 85% 100%, rgba(61, 69, 144, 0.04), transparent 40%);
+    radial-gradient(circle at 20% 0%, rgba(16, 184, 255, 0.045), transparent 40%),
+    radial-gradient(circle at 85% 100%, rgba(212, 175, 0, 0.03), transparent 40%);
 }
 
 .video-panel {
@@ -1123,5 +1123,448 @@ button.danger:hover { background: #ff6c85; filter: none; }
   .auth-hero::after {
     animation: none;
     filter: blur(46px);
+  }
+}
+
+
+/* ==========================================================================
+   PORTO-INSPIRED CORPORATE VISUAL LAYER
+   Deep charcoal + electric blue + restrained teal.
+   Existing layout/HTML/JS preserved.
+   ========================================================================== */
+
+html,
+body {
+  background: #111419;
+  color: #f5f7f8;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ---------- AUTH HERO ---------- */
+
+.auth-hero {
+  background:
+    radial-gradient(
+      700px 520px at 16% 32%,
+      rgba(7, 137, 182, 0.22),
+      transparent 66%
+    ),
+    radial-gradient(
+      620px 480px at 78% 90%,
+      rgba(0, 196, 199, 0.08),
+      transparent 70%
+    ),
+    linear-gradient(
+      135deg,
+      #151a20 0%,
+      #111419 55%,
+      #0c1014 100%
+    );
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+
+/* Large soft corporate arc instead of neon blobs */
+.auth-hero::before {
+  width: 780px;
+  height: 780px;
+  top: -300px;
+  left: -300px;
+  border: 1px solid rgba(22, 188, 228, .08);
+  background:
+    repeating-radial-gradient(
+      ellipse at center,
+      transparent 0 48px,
+      rgba(30, 188, 221, .035) 49px 50px,
+      transparent 51px 96px
+    );
+  filter: none;
+  opacity: 1;
+  animation: none;
+}
+
+.auth-hero::after {
+  width: 650px;
+  height: 650px;
+  right: -360px;
+  bottom: -300px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 161, 194, .10),
+    transparent 68%
+  );
+  filter: blur(45px);
+  opacity: 1;
+  animation: none;
+}
+
+/* ---------- BRAND ---------- */
+
+.brand-word {
+  color: #f7f9fa;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+
+.brand-word .dot {
+  background: linear-gradient(
+    135deg,
+    #19c8ff 0%,
+    #087fe8 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- HERO ---------- */
+
+.hero-headline {
+  color: #f7f9fa;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  text-shadow: none;
+}
+
+.hero-sub {
+  color: #a9b0b6;
+  line-height: 1.65;
+}
+
+/* ---------- BLUE ACCENT WAVE ---------- */
+
+.waveform span {
+  background: linear-gradient(
+    180deg,
+    #19c8ff,
+    #087fe8
+  );
+  box-shadow: 0 0 10px rgba(16,184,255,.12);
+}
+
+/* ---------- AUTH PANEL ---------- */
+
+.auth-panel {
+  background:
+    linear-gradient(
+      180deg,
+      #111419 0%,
+      #0e1115 100%
+    );
+}
+
+.auth-panel h1 {
+  color: #f5f7f8;
+  font-weight: 600;
+}
+
+/* ---------- TABS ---------- */
+
+.tabs {
+  border-bottom-color: rgba(255,255,255,.09);
+}
+
+.tab {
+  color: #7f878e;
+}
+
+.tab:hover {
+  color: #d4d9dc;
+}
+
+.tab.active {
+  color: #ffffff;
+  border-bottom-color: #10b8ff;
+  border-image: none;
+}
+
+/* ---------- INPUTS ---------- */
+
+input[type="text"],
+input[type="password"] {
+  background: #171b20;
+  border: 1px solid rgba(255,255,255,.10);
+  color: #f5f7f8;
+  border-radius: 8px;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+  background: #1b2025;
+  border-color: rgba(255,255,255,.16);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background: #151a1f;
+  border-color: #10b8ff;
+  box-shadow: 0 0 0 3px rgba(16,184,255,.10);
+}
+
+input::placeholder {
+  color: #667078;
+}
+
+/* ---------- BUTTONS ---------- */
+
+button {
+  background: linear-gradient(
+    135deg,
+    #15c8ff 0%,
+    #087fe8 100%
+  );
+  color: #061018;
+  border-radius: 7px;
+  font-weight: 600;
+  box-shadow: 0 7px 22px rgba(0, 126, 232, .18);
+}
+
+button:hover {
+  background: linear-gradient(
+    135deg,
+    #2ed0ff 0%,
+    #1190f0 100%
+  );
+  filter: none;
+  box-shadow: 0 9px 26px rgba(0, 126, 232, .24);
+}
+
+button.secondary {
+  background: #1b2025;
+  color: #edf1f3;
+  border: 1px solid rgba(255,255,255,.11);
+}
+
+button.secondary:hover {
+  background: #23292f;
+  border-color: rgba(255,255,255,.18);
+}
+
+/* ---------- STATUS ---------- */
+
+.status-msg.info {
+  background: rgba(16,184,255,.07);
+  color: #9ddfff;
+}
+
+/* ==========================================================================
+   LOBBY
+   ========================================================================== */
+
+.lobby-body {
+  background:
+    radial-gradient(
+      850px 600px at 12% -10%,
+      rgba(8, 142, 190, .13),
+      transparent 60%
+    ),
+    radial-gradient(
+      800px 600px at 100% 100%,
+      rgba(0, 174, 183, .07),
+      transparent 65%
+    ),
+    #111419;
+}
+
+.lobby-header {
+  background: rgba(15,19,24,.76);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(14px);
+}
+
+/* Corporate card */
+.console {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(32,39,46,.96),
+      rgba(18,23,28,.97)
+    );
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 16px;
+  box-shadow: 0 28px 70px rgba(0,0,0,.42);
+}
+
+.console-pane:hover {
+  background: rgba(16,184,255,.025);
+}
+
+/* Primary icon */
+.console-create .console-icon {
+  background: linear-gradient(
+    135deg,
+    #15c8ff,
+    #087fe8
+  );
+  color: #061018;
+  box-shadow: 0 10px 25px rgba(0,126,232,.18);
+}
+
+.console-join .console-icon {
+  background: #1a2025;
+  border: 1px solid rgba(255,255,255,.10);
+  color: #91a0a8;
+}
+
+/* ==========================================================================
+   ROOM
+   ========================================================================== */
+
+.room-body {
+  background: #111419;
+}
+
+.room-header {
+  background: rgba(15,19,24,.92);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.room-main {
+  background:
+    radial-gradient(
+      700px 500px at 50% 0%,
+      rgba(7,145,192,.045),
+      transparent 62%
+    ),
+    #111419;
+}
+
+.video-tile {
+  background: #191e23;
+  border: 1px solid rgba(255,255,255,.085);
+  border-radius: 11px;
+  box-shadow: 0 14px 38px rgba(0,0,0,.22);
+}
+
+.video-tile.speaking {
+  border-color: #10b8ff;
+  box-shadow:
+    0 0 0 1px rgba(16,184,255,.55),
+    0 0 22px rgba(16,184,255,.09);
+}
+
+.video-tile .label {
+  background: rgba(10,13,17,.80);
+  color: #e9edef;
+  border: 1px solid rgba(255,255,255,.07);
+}
+
+.video-tile.speaking .label .live-dot {
+  background: #10b8ff;
+  box-shadow: 0 0 8px rgba(16,184,255,.55);
+}
+
+/* ==========================================================================
+   DOCK
+   ========================================================================== */
+
+.dock {
+  background: rgba(20,25,30,.94);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 22px 55px rgba(0,0,0,.48);
+  backdrop-filter: blur(18px);
+}
+
+.dock-btn {
+  background: #1b2025;
+  color: #e8edef;
+}
+
+.dock-btn:hover {
+  background: #252b31;
+}
+
+.dock-btn.panel-active {
+  background: linear-gradient(
+    135deg,
+    #15c8ff,
+    #087fe8
+  );
+  color: #061018;
+}
+
+/* ==========================================================================
+   SIDE PANEL
+   ========================================================================== */
+
+.side-panel {
+  background: rgba(15,19,23,.97);
+  border-left: 1px solid rgba(255,255,255,.09);
+}
+
+.side-tab {
+  color: #778087;
+}
+
+.side-tab.active {
+  color: #f5f7f8;
+  border-bottom: 2px solid #10b8ff;
+  border-image: none;
+}
+
+/* ==========================================================================
+   FILES / CHAT
+   ========================================================================== */
+
+#file-list li {
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.07);
+}
+
+#file-list a,
+#chat-list li strong,
+#chat-list .mention {
+  color: #12bfff;
+}
+
+#chat-list li.mention-me {
+  background: rgba(16,184,255,.055);
+  border-left-color: #10b8ff;
+}
+
+/* ==========================================================================
+   POPOVERS
+   ========================================================================== */
+
+.popover {
+  background: #171c21;
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 22px 55px rgba(0,0,0,.50);
+}
+
+/* ==========================================================================
+   FOCUS / SCROLLBAR
+   ========================================================================== */
+
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline-color: #10b8ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.13);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,.22);
+}
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 780px) {
+  .auth-hero {
+    background:
+      radial-gradient(
+        500px 400px at 15% 20%,
+        rgba(7,145,192,.16),
+        transparent 68%
+      ),
+      #111419;
   }
 }
